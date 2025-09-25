@@ -1,0 +1,33 @@
+.inputBox_container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 300px;
+  height: 40px;
+  background-color: #5c6370;
+  border-radius: .9em;
+  position: absolute;
+  top: 3%;
+  left: 40%;
+  overflow: hidden;
+}
+
+.search_icon {
+  font-size: 20px;
+  padding: 0 0.5em 0 0.8em;
+  fill: #abb2bf;
+}
+
+.inputBox {
+  background-color: transparent;
+  color: #ffffff;
+  outline: none;
+  width: 100%;
+  border: 0;
+  padding: 20px 10px 10px 20px;
+  font-size: 1em;
+}
+
+::placeholder {
+  color: #abb2bf;
+}

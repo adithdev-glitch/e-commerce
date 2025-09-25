@@ -1,0 +1,101 @@
+/* Sidebar container */
+.sidebar {
+    width: 260px;
+    height: 84vh;
+    background: transparent; /* dark slate */
+    color: #1e293b; /* near-white */
+    padding: 20px;
+    display: flex;
+    float: left;
+    flex-direction: column;
+    justify-content: space-between;
+    border: none;
+  }
+  
+  /* Title */
+  .sidebar h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  /* Divider */
+  .sidebar hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 10px 0 20px;
+  }
+  
+  /* Menu */
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+  }
+  
+  .menu li {
+    display: flex;              /* icon + text in a row */
+    align-items: center;        /* vertically align */
+    gap: 12px;                  /* space between icon and text */
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #222;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .menu li a{
+    width: 100%;
+    display: flex;              /* icon + text in a row */
+    align-items: center;        /* vertically align */
+    gap: 12px;                  /* space between icon and text */
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #222;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  
+  .menu li a:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: #007bff;
+  }
+  
+  /* Icons */
+  .icon {
+  font-size: 18px;
+  background: #ffffff;
+  padding: 6px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+  }
+
+  .menu li a:hover .icon {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Logout Button */
+  .logout-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #ef4444; /* red-500 */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .logout-btn:hover {
+    background: #dc2626; /* red-600 */
+  }
+  

@@ -1,0 +1,59 @@
+.main-5 {
+  padding: 20px 30px;
+  background-color: #f0f2ed;
+  display: block;
+}
+
+.member-header {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: 'PP Neue Montreal', sans-serif;
+  color: #333;
+}
+
+.member-header h2 {
+  font-size: 2rem;
+  font-family: 'PP Neue Montreal', sans-serif;
+  color: #333;
+}
+
+.member-content {
+  display: flex;
+  gap: 17px;
+  flex-wrap: wrap;
+  justify-content: center; /* keeps them centered */
+  width: 100%;
+}
+
+.member-content img {
+  flex: 1 1 calc(25% - 17px); /* 4 images per row (minus gap) */
+  max-width: calc(25% - 17px);
+  height: auto; /* keep natural aspect ratio */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.member-content img:hover {
+  transform: scale(1.05);
+}
+
+
+
+/* Tablet (2 per row) */
+@media (max-width: 1024px) {
+  .member-content img {
+    flex: 2 2 calc(50% - 17px);
+    max-width: calc(50% - 17px);
+  }
+}
+
+/* Mobile (1 per row) */
+@media (max-width: 600px) {
+  .member-content img {
+    flex: 2 2 calc(50% - 17px);
+    max-width: calc(50% - 17px);
+  }
+}

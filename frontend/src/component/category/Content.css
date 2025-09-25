@@ -1,0 +1,76 @@
+.main-2 {
+    padding: 20px;
+    font-family: 'PP Neue Montreal', sans-serif;
+    background-color: #f0f2ed;
+  }
+  
+  .main-2 h5 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .border-div {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    border: 2px dashed #aaa;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  
+  .icon-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 420px;
+    
+  }
+  
+  .icon-text svg {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #444;
+    transition: transform 0.3s ease;
+  }
+  
+  .icon-text svg:hover {
+    transform: scale(1.2);
+    color: #000;
+  }
+  
+  .icon-text p {
+    font-size: 0.95rem;
+    color: #555;
+    margin: 0;
+    width: 250px;
+  }
+
+em{
+  color: grey;
+}
+.scroll-container {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  background-color: #f0f2ed;
+  padding: 1rem 0;
+}
+
+.scroll-track {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.scroll-track span {
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-right: 2rem;
+  margin-top: 20px;
+
+}

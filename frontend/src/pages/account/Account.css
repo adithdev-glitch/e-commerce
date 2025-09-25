@@ -1,0 +1,144 @@
+/* Container */
+.containerr {
+  max-width: 768px;
+  margin: 2.5rem auto 0;
+  padding: 0 1rem;
+}
+
+/* Back button */
+.back-btn {
+  margin-bottom: 1.5rem;
+  background: #e5e7eb;
+  color: #1f2937;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: background 0.2s;
+}
+.back-btn:hover {
+  background: #d1d5db;
+}
+
+/* Form */
+.forms {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Profile section */
+.profile-section {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Image upload */
+.image-upload {
+  position: relative;
+  cursor: pointer;
+}
+.image-box {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.upload-text {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+.hidden-input {
+  display: none;
+}
+
+/* Name & email */
+.user-name {
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+.user-email {
+  color: #4b5563;
+}
+
+/* Reset Password Button */
+.reset-btn {
+  margin-top: 1rem;
+  background: #ef4444;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: background 0.2s;
+}
+.reset-btn:hover {
+  background: #dc2626;
+}
+
+/* Shipping section */
+.shipping-section {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Input fields */
+.input-field {
+  display: block;
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+.input-field:focus {
+  outline: none;
+  border-color: #9ca3af;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Save button */
+.save-btn {
+  width: 100%;
+  background: #dc2626;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: background 0.2s;
+}
+.save-btn:hover {
+  background: #b91c1c;
+}

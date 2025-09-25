@@ -1,0 +1,100 @@
+/* Page layout */
+.verification-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Box styling */
+  .verification-box {
+    background-color: #ffffff;
+    padding: 30px 25px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  /* Headings and text */
+  .verification-box h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+  
+  .verification-box p {
+    margin-bottom: 20px;
+    color: #666;
+  }
+  
+  /* Input */
+  .code-input {
+    width: 94%;
+    padding: 12px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    outline: none;
+  }
+  
+  .code-input:focus {
+    border-color: #007bff;
+  }
+  
+  /* Buttons */
+  .verify-btn,
+  .resend-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    margin-top: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .verify-btn {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .verify-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .resend-btn {
+    background-color: transparent;
+    color: #007bff;
+    margin-top: 10px;
+    text-decoration: underline;
+  }
+  
+  .resend-btn:hover {
+    color: #0056b3;
+    background-color: transparent;
+  }
+  
+  /* Error and success messages */
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  .success {
+    color: green;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  .countdown-text{
+    font-size: 14px;
+    color: #666;
+    margin-top: 15px;
+  }

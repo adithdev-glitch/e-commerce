@@ -1,0 +1,369 @@
+.billing-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+.billing-left {
+    flex: 1;
+  }
+  
+  /* Credit Card */
+  .card3 {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+  }
+  
+  .card3-bg {
+    position: relative;
+    background-size: cover;
+    border-radius: 16px;
+    overflow: hidden;
+    height: 200px;
+  }
+  
+  .card3-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top left, rgba(17,24,39,0.8), rgba(71,85,105,0.8));
+  }
+  
+  .card3-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    color: #fff;
+  }
+  
+  .card3-icon {
+    font-size: 18px;
+  }
+  
+  .card3-number {
+    margin: 20px 0;
+  }
+  
+  .card3-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .card3-holder p, .card3-expiry p {
+    font-size: 12px;
+    opacity: 0.8;
+  }
+  
+  .card3-holder h6, .card3-expiry h6 {
+    margin: 0;
+  }
+  
+  .card3-logo img {
+    width: 50px;
+  }
+  
+  /* Small Cards */
+  .card3-small-cards {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .card3-small-card {
+    flex: 1;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .card3-header {
+    margin-bottom: 10px;
+  }
+  
+  .card3-body h6 {
+    margin: 0;
+  }
+  
+  .card3-body span {
+    font-size: 12px;
+  }
+  
+  .card3-body hr {
+    border: none;
+    border-top: 1px solid rgba(0,0,0,0.2);
+    margin: 10px 0;
+  }
+  
+  /* Payment Method */
+  .card3-payment-method {
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  
+  .card3-payment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  
+  .add-card3-btn {
+    background: linear-gradient(135deg, #111827, #475569);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .card3-payment-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .card3-payment-card {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 12px;
+  }
+  
+  .card3-payment-card img {
+    width: 40px;
+    margin-right: 12px;
+  }
+  
+  .card3-edit-icon {
+    margin-left: auto;
+    cursor: pointer;
+    color: #475569;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .card3-small-cards {
+      flex-direction: column;
+    }
+    .card3-payment-cards {
+      flex-direction: column;
+    }
+  }
+  
+  
+  /* Invoices (Right Section) */
+  .billing-right {
+    flex: 1;
+    max-width: 400px;
+  }
+  
+  .invoices-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  
+  .invoices-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  
+  .view-all-btn {
+    padding: 8px 12px;
+    border-radius: 8px;
+    background-color: #f0f;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .invoices-list {
+    padding: 20px;
+  }
+  
+  .invoice-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 12px;
+  }
+  
+  .invoice-info h6 {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .invoice-info span {
+    font-size: 12px;
+    color: #555;
+  }
+  
+  .invoice-action {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .pdf-btn {
+    background: transparent;
+    border: none;
+    color: #555;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .pdf-btn i {
+    font-size: 16px;
+  }
+  .billing-container2 {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .billing-left2 {
+    flex: 1 1 60%;
+  }
+  
+  .billing-right2 {
+    flex: 1 1 30%;
+  }
+  
+  .billing-card2,
+  .transactions-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .billing-card-header,
+  .transactions-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .billing-card-body,
+  .transactions-body {
+    padding: 20px;
+  }
+  
+  .billing-user-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    margin-bottom: 10px;
+    background: #f8f8f8;
+    border-radius: 12px;
+  }
+  
+  .billing-user-info h6 {
+    margin: 0 0 5px 0;
+  }
+  
+  .billing-user-info span {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
+  
+  .billing-user-actions button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .billing-btn-delete {
+    background: linear-gradient(to right, #f43f5e, #f472b6);
+    color: white;
+    border: none;
+  }
+  
+  .billing-btn-edit {
+    background: transparent;
+    border: 1px solid #ccc;
+    color: #333;
+  }
+  
+  .transaction-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    margin-bottom: 10px;
+    background: #f8f8f8;
+    border-radius: 12px;
+    align-items: center;
+  }
+  
+  .transaction-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .transaction-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: none;
+    font-weight: bold;
+    cursor: default;
+  }
+  
+  .transaction-btn.red {
+    color: #dc2626;
+    border: 1px solid #dc2626;
+  }
+  
+  .transaction-btn.green {
+    color: #16a34a;
+    border: 1px solid #16a34a;
+  }
+  
+  .transaction-right p.red {
+    background: linear-gradient(to top left, #dc2626, #f43f5e);
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+  }
+  
+  .transaction-right p.green {
+    background: linear-gradient(to top left, #16a34a, #84cc16);
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+  }
+  
+  .transactions-section-title {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 10px;
+  }
+  

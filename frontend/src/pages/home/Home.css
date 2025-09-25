@@ -1,0 +1,238 @@
+.main {
+    display: flex;
+    justify-content: center; /* centers horizontally */
+    align-items: center;  
+    padding: 0 6%;
+    min-height: 80vh;
+    background-color: #f0f2ed;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+
+  .side-line-left {
+    flex: 1;
+    position:absolute;
+    top: 200px;
+    left: 30px;
+  }
+  
+  .side-line-left h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+    color: #222;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-weight: 700; 
+    letter-spacing: -0.5px; 
+    line-height: 1.2;
+  }
+
+  .quote {
+    position: absolute;
+    top: 150px;
+    left: 70px;
+    max-width: 210px;
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    padding: 1.5rem;
+  }
+  
+  .quote::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #b8bab5;
+    border-left: 2px solid #b8bab5;
+  }
+  
+  .quote::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid #b8bab5;
+    border-right: 2px solid #b8bab5;
+  }
+
+  .side-line-right {
+    flex: 1;
+    max-width: 400px;
+    position:absolute;
+    top: 200px;
+    right: 100px;
+  }
+  
+  .side-line-right p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+  
+  .explore-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem; 
+    background-color: #3a6e41;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  .explore-btn:hover {
+    background-color: #3a6e41;
+  }
+  
+  .arrow-icon {
+    font-size: 1rem;
+    background-color: transparent;
+    transition: transform 0.3s ease;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .explore-btn:hover .arrow-icon {
+    transform: translateX(4px);
+  }
+
+  .review {
+    position: relative;
+    padding-left: 2rem;
+    max-width: 300px;
+    left: 100px;
+    top: 30px;
+  }
+
+  .review h6 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 40px;
+    color: #555;
+    margin: 0;
+  
+  }
+  
+  .review .stars,
+  .review p {
+    margin: 0.2rem 0 0.5rem;
+    color: #555;
+    font-size: 1rem;
+  }
+
+  .fasion{
+    padding: 0;
+    position: absolute;
+    top: 500px;
+    left: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22vw;
+    font-weight: bold;
+    letter-spacing: 0.5rem;
+    color: #ffffff;
+    background-color: transparent;
+    text-transform: uppercase;
+    overflow: hidden;
+  }
+
+  .model{
+    z-index: 2;
+    background-color: transparent;
+    height: 750px; 
+    transition: filter 0.3s ease;
+    backface-visibility: hidden;
+  transform-style: preserve-3d;
+  }
+
+  @media (max-width: 1024px) {
+    .side-line-left,
+    .side-line-right {
+      max-width: 100%;
+      position: relative;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+  
+    .main {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 2rem 4%;
+      position: relative; /* Ensure child elements can be positioned absolutely */
+    }
+  
+    .side-line-left h2 {
+      font-size: 2rem;
+    }
+  
+    .quote,
+    .review {
+      display: none;
+    }
+  
+    .explore-btn {
+      float: right;
+    }
+  
+    .fasion {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100vw;        /* Full screen width */
+      font-size: 18vw;
+      text-align: center;
+      z-index: 1;          /* Make sure it's under `.model` or other content if needed */
+    }
+  
+    .model {
+      height: 90vh;
+    }
+  }
+  
+  
+  @media (max-width: 600px) {
+    .side-line-left h2 {
+      font-size: 1.8rem;
+    }
+  
+    .quote {
+      max-width: 100%;
+      font-size: 0.95rem;
+    }
+  
+    .side-line-right p {
+      font-size: 1rem;
+    }
+  
+    .explore-btn {
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+    }
+  
+    .fasion {
+      font-size: 22vw;
+      letter-spacing: 0.2rem;
+    }
+    .model {
+        height: 70vh;
+        overflow-x: hidden;
+      }
+  }

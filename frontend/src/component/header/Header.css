@@ -1,0 +1,170 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #f0f2ed;
+  flex-wrap: wrap;
+  font-family: 'Helvetica Neue';
+  transition: background-color 1s ease, color 0.4s ease;
+}
+
+.header.light {
+  background-color: #f0f2ed;
+  color: black;
+}
+
+.header.dark {
+  background-color: #c7a782;
+  color: #ffffff;
+}
+
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.nav-left li a{
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  color: #3b3d38;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.nav-left li a:hover {
+  color: #718874;
+}
+
+.nav-left li svg {
+  margin-right: 0.3rem;
+  transition: transform 0.3s ease;
+}
+
+.nav-left li:hover svg {
+  transform: translateX(2px) translateY(-2px);
+}
+
+/* Logo styling */
+.logo {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #000;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+/* Right navigation list */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-right li a{
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  color: #3b3d38;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.nav-right li a:hover {
+  color: #718874;
+}
+
+.nav-right li svg {
+  margin-right: 0.3rem;
+  font-size: 1.1rem;
+}
+
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .ham-div{
+    background-color: #f0f2ed;
+    width: 100%;
+    height: 20px;
+  }
+  /* Show hamburger */
+  .hamburger {
+    display: block;
+    position: absolute;
+    right: 1.5rem;
+    top: 1.2rem;
+    z-index: 1001;
+    font-size: 1.8rem;
+    color: #3b3d38;
+  }
+
+  /* Stack nav-left and nav-right vertically */
+  .nav-left {
+    display: none;
+    flex-direction: column;
+    background-color: #f0f2ed;
+    width: 47%;
+    padding: 1rem 2rem;
+    position: absolute;
+    top: 6px;
+    left: 0px;
+    z-index: 99;
+    gap: 1rem;
+  }
+  .nav-left li{
+    width: 100%;
+  }
+
+  .nav-right li{
+    position: relative;
+    margin-right: -300px;
+    width: 100%;
+    text-align: right;
+  }
+  .nav-right {
+    display: none;
+    flex-direction: column;
+    background-color: #f0f2ed;
+    width: 47%;
+    padding-top: 4.2rem;
+    padding-bottom: 2rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 99;
+    gap: 1rem;
+  }
+
+  .nav-left.show,
+  .nav-right.show {
+    display: flex;
+    
+  }
+
+  /* Center logo on mobile */
+  .logo {
+    order: -1; /* Ensure it stays at the top */
+    margin: 0px auto;
+    margin-left: -0px;
+    padding-bottom: 1rem;
+  }
+}

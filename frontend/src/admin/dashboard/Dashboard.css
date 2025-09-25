@@ -1,0 +1,207 @@
+.colorBar{
+    width: 76%;
+    height: 250px;
+    background-image: url(../../assets/curved0.jpg);
+    background-position: center;
+    background-size: cover;
+    margin-left: 310px;
+    border-radius: 20px;
+    padding: 15px;
+    margin-top: 20px;
+    color: white;
+}
+
+.profileBar {
+    width: 70%;
+    height: 90px;
+    background-color: #f0f4f8;
+    backdrop-filter: transparent(50%);
+    margin-left: 350px;
+    border-radius: 20px;
+    margin-top: -50px;
+    padding: 15px;
+    display: flex;
+    align-items: center;   /* Vertically center items */
+    gap: 20px;
+}
+
+.profileBar img {
+    width: 85px;
+    height: 85px;
+    border-radius: 10px;
+}
+
+.profileInfo {
+    display: flex;
+    flex-direction: column;   /* Stack name & role */
+    justify-content: center;
+    line-height: 1.2;
+}
+
+.profileInfo h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.profileInfo p {
+    margin: 2px 0 0 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.profileBar button {
+    margin-left: auto;  /* Push to right */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: black;
+}
+
+.contents {
+    display: flex;
+    gap: 20px;         /* space between divs */
+  }
+  
+  .div1, .div2, .div3 {
+    width: 340px;
+    height: 400px;
+    background: #f1efef;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-size: 20px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+.div1 h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 5px;
+}
+
+.div1 p {
+  font-size: 15px;
+  color: #555;
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+.div1 p:first-of-type {
+  font-style: italic;
+  color: #666;
+}
+
+.div1 p:not(:first-of-type) {
+  font-weight: 500;
+  color: #222;
+}
+
+.feed {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    margin-bottom: 12px;
+    margin-top: 10px;
+  }
+  
+  .feed img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .feed h5 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .feed p {
+    margin: 2px 0 0;
+    font-size: 14px;
+    color: #555;
+  }
+  @media (max-width: 1200px) {
+    .colorBar {
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    .profileBar {
+      width: 85%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .colorBar {
+      height: 180px;
+    }
+  
+    .profileBar {
+      flex-direction: column;
+      height: auto;
+      gap: 10px;
+      text-align: center;
+      padding: 20px;
+    }
+  
+    .profileBar img {
+      width: 70px;
+      height: 70px;
+    }
+  
+    .profileBar button {
+      margin-left: 0;
+    }
+  
+    .contents {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .div1, .div2, .div3 {
+      width: 90%;
+      max-width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .colorBar {
+      height: 150px;
+      border-radius: 10px;
+    }
+  
+    .profileBar {
+      width: 95%;
+    }
+  
+    .profileInfo h2 {
+      font-size: 18px;
+    }
+  
+    .feed {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .feed img {
+      margin-bottom: 8px;
+    }
+  }
+  
