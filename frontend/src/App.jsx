@@ -20,6 +20,9 @@ import AdminLayout from './layout/AdminLayout'
 import Profile from './admin/profile/Profile'
 import AddProduct from './admin/product/AddProduct'
 import Billing from './admin/billing/Billing'
+import ProductDescription from './pages/product-description/ProductDescription'
+import Cart from './pages/cart/Cart'
+import Wishlist from './pages/wishlist/Wishlist'
 
 
 
@@ -31,7 +34,6 @@ function App() {
   return (
   <BrowserRouter>
   <Toaster position="top-center" reverseOrder={false} />
-  {/* <Header onLoginClick={() => setShowLogin(true)} onSearchClick={() => setShowSearch(true)}/> */}
   <Routes>
     <Route path="/" element={<Layout />}/>
       {/* <Route index element={ <Home  />}/> */}
@@ -43,7 +45,10 @@ function App() {
       <Route path="/home/forgot-password" element={<ForgotPass />}/>
       <Route path='/home/reset-password/:token' element={<ResetPassword />} />
       <Route path="/home/account" element={<Account />} />
+      <Route path="/home/product/:id" element={<ProductDescription />}/>
+      <Route path="/home/favourite" element={<Wishlist />}/>
     </Route>
+      <Route path="/home/cart" element={<Cart />}/>
     <Route path="/admin" element={<AdminLayout/>}>
       <Route index element={ <Dashboard  />}/>
       <Route path="/admin/profile" element={<Profile />}/>
