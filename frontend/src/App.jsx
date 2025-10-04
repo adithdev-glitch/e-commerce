@@ -1,13 +1,10 @@
 import './App.css'
 import React, { useState } from 'react'
-import Header from './component/header/Header'
 import About from './pages/about/About'
 import Contact from './pages/contact/Contact'
 import ShopPage from './pages/shop/Shop'
-import Home from './pages/home/Home'
 import Footer from './component/footer/Footer'
 import { BrowserRouter, Route, Routes} from 'react-router-dom'
-import Search from './component/search/Search'
 import Verify from './pages/verification/Verify'
 import { Toaster } from 'react-hot-toast'
 import Account from './pages/account/Account'
@@ -27,9 +24,6 @@ import Wishlist from './pages/wishlist/Wishlist'
 
 
 function App() {
-  // const [showLogin, setShowLogin] = useState(false);
-  // const [showSearch, setShowSearch] = useState(false);
-
 
   return (
   <BrowserRouter>
