@@ -168,7 +168,7 @@
   margin-top: 10px;
 }
 
-.add-to-cart {
+.add-to-car{
   padding: 12px 22px;
   background: #ff4747;
   color: #fff;
@@ -179,7 +179,7 @@
   transition: background 0.3s ease;
 }
 
-.add-to-cart:hover {
+.add-to-car:hover {
   background: #e23b3b;
 }
 
@@ -224,5 +224,150 @@
 
   .product-header h1 {
     font-size: 1.8rem;
+  }
+}
+/* ✨ RELATED PRODUCTS - PREMIUM DESIGN ✨ */
+.related-products {
+  margin-top: 90px;
+  padding: 80px 60px;
+  background: radial-gradient(circle at top left, #ffffff 0%, #f8f8f8 100%);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 24px 24px 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.related-products::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -100px;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.05), transparent 70%);
+  filter: blur(60px);
+}
+
+.related-products h2 {
+  font-size: 2.4rem;
+  text-align: center;
+  color: #111;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.related-products h2::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #000, #555);
+  border-radius: 4px;
+}
+
+/* 🎯 GRID LAYOUT */
+.related-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  justify-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* 🪩 PRODUCT CARD */
+.related-card {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  overflow: hidden;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  position: relative;
+  max-width: 320px;
+}
+
+.related-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* 🖼️ IMAGE SECTION */
+.related-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.6s ease, filter 0.6s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.related-card:hover .related-img {
+  transform: scale(1.08);
+  filter: brightness(0.9);
+}
+
+/* 🧾 PRODUCT INFO */
+.related-card h3 {
+  font-size: 1.15rem;
+  margin: 15px 0 5px;
+  color: #222;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: -0.3px;
+}
+
+.related-card p {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* 🌈 Hover Overlay */
+.related-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom right, rgba(255,255,255,0.1), rgba(0,0,0,0.05));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.related-card:hover::before {
+  opacity: 1;
+}
+
+/* 🪄 Floating Glow */
+.related-card::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 20px;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.08), transparent 80%);
+  filter: blur(10px);
+  z-index: -1;
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 768px) {
+  .related-products {
+    padding: 50px 20px;
+  }
+
+  .related-img {
+    height: 240px;
   }
 }

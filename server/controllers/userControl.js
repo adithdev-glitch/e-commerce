@@ -365,3 +365,26 @@ export const fetchProductDesc = async (req, res) => {
     res.status(500).json({ message: "Error fetching product", error: error.message });
   }
 }
+
+// ✅ Get related products (same category)
+export const getRelatedProducts = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const product = await productModel.findById(id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    // Fetch products of same category, excluding current product
+    const relatedProducts = await productModel.find({
+      category: product.category,
+      _id: { $ne: product._id },
+    }).limit(6);
+
+    res.status(200).json(relatedProducts);
+  } catch (error) {
+    console.error("Error fetching related products:", error);
+    res.status(500).json({ message: "Server error while fetching related products" });
+  }
+};
