@@ -1,84 +1,73 @@
-import React, { useEffect, useState } from 'react'
-import "./Shop.css"
-import Sidebar from '../../component/shopSideBar/Sidebar'
+import React, { useEffect, useState } from "react";
+import Sidebar from "../../component/shopSideBar/Sidebar";
 import { CiHeart } from "react-icons/ci";
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import toast from 'react-hot-toast';
+import { Link } from "react-router-dom";
+import axios from "axios";
+import "./Shop.css";
 
 const Shop = () => {
-
-  const [sortOption, setSortOption] = useState("popularity");
-  
-  const handleSortChange = (e) => {
-    setSortOption(e.target.value);
-  }
-
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [wishlist, setWishlist] = useState([]);
 
-  // Load wishlist from localStorage on mount
+  // Load wishlist
   useEffect(() => {
     const storedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    // store only product IDs in state
     setWishlist(storedWishlist.map((item) => item._id));
   }, []);
 
-  // Toggle wishlist state + localStorage
-  const toggleWishlist = (product) => {
-    const storedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    const exists = storedWishlist.find((item) => item._id === product._id);
-
-    let updatedWishlist;
-    if (exists) {
-      // remove
-      updatedWishlist = storedWishlist.filter((item) => item._id !== product._id);
-    } else {
-      // add
-      updatedWishlist = [...storedWishlist, product];
-    }
-
-    // update localStorage
-    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
-
-    // update state (only IDs)
-    setWishlist(updatedWishlist.map((item) => item._id));
-  };
-
-  
-
-  const [products, setProducts] = useState([]);
-
+  // Fetch products
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/products");
-        setProducts(response.data); // store in state
+        const res = await axios.get("http://localhost:8080/products");
+        setProducts(res.data);
+        setFilteredProducts(res.data);
       } catch (error) {
-        console.log("Error fetching products:", error);
+        console.error("Error fetching products:", error);
       }
     };
-
-    fetchProducts(); // call the function
+    fetchProducts();
   }, []);
 
+  // Filter products instantly when categories change
+  useEffect(() => {
+    if (selectedCategories.length === 0) {
+      setFilteredProducts(products);
+    } else {
+      setFilteredProducts(
+        products.filter((product) => selectedCategories.includes(product.category))
+      );
+    }
+  }, [selectedCategories, products]);
 
+  // Toggle wishlist
+  const toggleWishlist = (product) => {
+    const storedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    const exists = storedWishlist.find((item) => item._id === product._id);
+    let updatedWishlist;
+    if (exists) {
+      updatedWishlist = storedWishlist.filter((item) => item._id !== product._id);
+    } else {
+      updatedWishlist = [...storedWishlist, product];
+    }
+    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+    setWishlist(updatedWishlist.map((item) => item._id));
+  };
 
   return (
-    <>
-      <div className="frame">
-        <Sidebar/>
-        <div className="content-sec">
-          <div className="heading-sec">
-            <h2>STORE</h2>
-            <select value={sortOption} onChange={handleSortChange} className="custom-select">
-              <option value="a-z">A-Z</option>
-              <option value="low-high">Low to High</option>
-              <option value="high-low">High to Low</option>
-              <option value="popularity">Popularity</option>
-            </select>
-          </div>
-          <div className="products-sec">
-            {products.map((product) => (
+    <div className="frame">
+      <Sidebar
+        selectedCategories={selectedCategories}
+        setSelectedCategories={setSelectedCategories}
+      />
+
+      <div className="content-sec">
+        <h2>STORE</h2>
+        <div className="products-sec">
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
               <div key={product._id} className="product-card">
                 <div className="img-wrapper">
                   <div className="wishlist-icon" onClick={() => toggleWishlist(product)}>
@@ -88,24 +77,27 @@ const Shop = () => {
                       <CiHeart className="heart" />
                     )}
                   </div>
-
-                <img src={product.images[0]} alt={product.name} className="default-img" />
-                {product.images[1] && (
-                <img src={product.images[1]} alt={product.name} className="hover-img"/>
-                )}
+                  <img src={product.images[0]} alt={product.name} className="default-img" />
+                  {product.images[1] && (
+                    <img src={product.images[1]} alt={product.name} className="hover-img" />
+                  )}
                 </div>
                 <h3>{product.title}</h3>
                 <hr />
                 <h4>{product.category}</h4>
                 <p>${product.price}</p>
-                <Link to={`/home/product/${product._id}`} className='descc-btn'>Buy Now</Link>
+                <Link to={`/home/product/${product._id}`} className="descc-btn">
+                  Buy Now
+                </Link>
               </div>
-            ))}
-          </div>
+            ))
+          ) : (
+            <p className="no-products">No products found in selected categories.</p>
+          )}
         </div>
       </div>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default Shop
+export default Shop;

@@ -388,3 +388,12 @@ export const getRelatedProducts = async (req, res) => {
     res.status(500).json({ message: "Server error while fetching related products" });
   }
 };
+
+export const sideBarCategories = async (req, res) => {
+  try {
+    const categories = await productModel.distinct("category");
+    res.json(categories);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching categories", error });
+  }
+};
