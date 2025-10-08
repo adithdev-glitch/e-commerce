@@ -1,8 +1,57 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import "./Cart.css";
+import axios from "axios";
+import{ jwtDecode  }from "jwt-decode";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
+  const [addresses, setAddresses] = useState([]);
+  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [newAddress, setNewAddress] = useState({
+    name: "",
+    phone: "",
+    street: "",
+    city: "",
+    state: "",
+    pincode: "",
+  });
+  const token = localStorage.getItem("token");
+
+// Decode token once
+let userId = null;
+if (token) {
+  try {
+    const decoded = jwtDecode(token);
+    userId = decoded.id; // ✅ correct field
+    console.log("User ID:", userId);
+  } catch (err) {
+    console.error("Invalid token:", err.message);
+  }
+} else {
+  console.log("No token found in localStorage");
+}
+
+useEffect(() => {
+  const fetchAddresses = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/address`, {
+        params: { id: userId }
+      });
+      let addressData = response.data;
+      if (typeof addressData === "string") {
+  addressData = JSON.parse(addressData);
+}
+
+setAddresses(addressData);
+    } catch (error) {
+      console.error("Error fetching addresses:", error);
+    }
+  };
+    fetchAddresses(); // Call the function
+  
+}, []); // Re-run
+  console.log("Addresses:", addresses);
 
   // 🧠 Load cart from localStorage when component mounts
   useEffect(() => {
@@ -77,7 +126,92 @@ const Cart = () => {
         </div>
 
         <div className="cart-summary">
-          <h2>Order Summary</h2>
+        <h2>Delivery Address</h2>
+
+        {/* Show addresses from DB (and local if added) */}
+        {addresses && Object.keys(addresses).length > 0 ? (
+  <div className="address-list">
+    <div className="address-card">
+      <p><strong>{addresses.name || "User"}</strong> ({addresses.phone || "-"})</p>
+      <p>
+        {addresses.street || "-"}, {addresses.city || "-"}, {addresses.state || "-"} - {addresses.zipcode || "-"}, {addresses.country || "-"}
+      </p>
+    </div>
+  </div>
+) : (
+  <p className="no-address">No saved addresses found.</p>
+)}
+
+
+        {/* ➕ Add New Address Button */}
+        <button
+          className="add-address-btn"
+          onClick={() => setShowAddForm(!showAddForm)}
+        >
+          {showAddForm ? "Cancel" : "➕ Add New Address"}
+        </button>
+
+        {/* 📋 Add Address Form */}
+        {showAddForm && (
+          <form className="address-form" >
+            <h3>Add New Address</h3>
+
+            <div className="form-row">
+              <input
+                type="text"
+                placeholder="Full Name"
+                value={newAddress.name}
+                onChange={(e) => setNewAddress({ ...newAddress, name: e.target.value })}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Phone Number"
+                value={newAddress.phone}
+                onChange={(e) => setNewAddress({ ...newAddress, phone: e.target.value })}
+                required
+              />
+            </div>
+
+            <input
+              type="text"
+              placeholder="Street Address"
+              value={newAddress.street}
+              onChange={(e) => setNewAddress({ ...newAddress, street: e.target.value })}
+              required
+            />
+
+            <div className="form-row">
+              <input
+                type="text"
+                placeholder="City"
+                value={newAddress.city}
+                onChange={(e) => setNewAddress({ ...newAddress, city: e.target.value })}
+                required
+              />
+              <input
+                type="text"
+                placeholder="State"
+                value={newAddress.state}
+                onChange={(e) => setNewAddress({ ...newAddress, state: e.target.value })}
+                required
+              />
+            </div>
+
+            <input
+              type="text"
+              placeholder="Pincode"
+              value={newAddress.pincode}
+              onChange={(e) => setNewAddress({ ...newAddress, pincode: e.target.value })}
+              required
+            />
+
+            <button type="submit" className="save-address-btn">
+              Save Address
+            </button>
+          </form>
+        )}
+         <h2>Order Summary</h2>
           <div className="summary-item">
             <span>Subtotal</span>
             <span>₹{getTotal()}</span>

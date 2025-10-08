@@ -50,7 +50,6 @@ function App() {
       <Route path='/admin/billing' element={<Billing />} />
     </Route>
     </Routes>
-    {/* <Footer /> */}
   </BrowserRouter>
   )
 }

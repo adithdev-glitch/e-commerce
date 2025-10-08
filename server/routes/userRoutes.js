@@ -2,7 +2,7 @@ import express from 'express';
 import upload from '../middleware/multer.js';
 import { fetchProductDesc, fetchProducts, forgotPassword, getRelatedProducts
     , googleLogin, googleRegister, login, manageAccount, register, resendOtp,
-     resetPassword, saveAddress, sideBarCategories, verifyUser } from '../controllers/userControl.js';
+     resetPassword, saveAddress, showAddresses, sideBarCategories, verifyUser } from '../controllers/userControl.js';
 
 const router = express.Router();
 
@@ -20,6 +20,7 @@ router.get('/products', fetchProducts);
 router.get('/products/:id', fetchProductDesc);
 router.get('/products/:id/related', getRelatedProducts);
 router.get("/categories", sideBarCategories);
+router.get("/address", showAddresses);
 
 
 export default router;

@@ -121,6 +121,7 @@
   .cart-summary h2 {
     margin-bottom: 20px;
     font-size: 1.4rem;
+    margin-top: 20px;
   }
   
   .summary-item,
@@ -182,5 +183,93 @@
     .cart-summary {
       width: 100%;
     }
+  }
+  .address-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  
+  .address-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .address-card:hover {
+    border-color: #007bff;
+  }
+  
+  .address-card.selected {
+    border: 2px solid #007bff;
+    background: #f0f8ff;
+  }
+  
+  .local-tag {
+    font-size: 12px;
+    color: #888;
+  }
+  
+  .add-address-btn {
+    margin-top: 10px;
+    background: #7da048;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .add-address-btn:hover {
+    background: #0056b3;
+  }
+  
+  /* Add Address Form Styling */
+  .address-form {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 16px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .address-form input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
+    flex: 1;
+  }
+  
+  .save-address-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .save-address-btn:hover {
+    background: #218838;
+  }
+  
+  .no-address {
+    color: #666;
+    font-size: 14px;
   }
   
