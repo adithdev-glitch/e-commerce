@@ -6,7 +6,6 @@ import{ jwtDecode  }from "jwt-decode";
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [addresses, setAddresses] = useState([]);
-  const [selectedAddress, setSelectedAddress] = useState(null);
   const [showAddForm, setShowAddForm] = useState(false);
   const [newAddress, setNewAddress] = useState({
     name: "",
@@ -23,8 +22,7 @@ let userId = null;
 if (token) {
   try {
     const decoded = jwtDecode(token);
-    userId = decoded.id; // ✅ correct field
-    console.log("User ID:", userId);
+    userId = decoded.id;
   } catch (err) {
     console.error("Invalid token:", err.message);
   }
@@ -51,7 +49,6 @@ setAddresses(addressData);
     fetchAddresses(); // Call the function
   
 }, []); // Re-run
-  console.log("Addresses:", addresses);
 
   // 🧠 Load cart from localStorage when component mounts
   useEffect(() => {
@@ -91,6 +88,8 @@ setAddresses(addressData);
   if (!cartItems.length) {
     return <div className="empty-cart">🛒 Your cart is empty!</div>;
   }
+
+  
 
   return (
     <div className="cart-page">
@@ -132,10 +131,12 @@ setAddresses(addressData);
         {addresses && Object.keys(addresses).length > 0 ? (
   <div className="address-list">
     <div className="address-card">
-      <p><strong>{addresses.name || "User"}</strong> ({addresses.phone || "-"})</p>
+      <p><strong>{addresses.name || "User"}</strong></p>
+      <p>Mob : {addresses.phone || "-"}</p>
       <p>
-        {addresses.street || "-"}, {addresses.city || "-"}, {addresses.state || "-"} - {addresses.zipcode || "-"}, {addresses.country || "-"}
+        {addresses.street || "-"}, {addresses.city || "-"}, {addresses.state || "-"}
       </p>
+      <p>{addresses.zipcode || "-"}, {addresses.country || "-"}</p>
     </div>
   </div>
 ) : (
@@ -152,7 +153,7 @@ setAddresses(addressData);
         </button>
 
         {/* 📋 Add Address Form */}
-        {showAddForm && (
+        {/* {showAddForm && (
           <form className="address-form" >
             <h3>Add New Address</h3>
 
@@ -210,7 +211,7 @@ setAddresses(addressData);
               Save Address
             </button>
           </form>
-        )}
+        )} */}
          <h2>Order Summary</h2>
           <div className="summary-item">
             <span>Subtotal</span>

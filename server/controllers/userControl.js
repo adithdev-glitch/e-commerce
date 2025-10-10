@@ -401,13 +401,11 @@ export const sideBarCategories = async (req, res) => {
 export const showAddresses = async (req, res) => {
   try {
     const id = req.query.id;
-    console.log(id);
     const user = await userModel.findById(id);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
     res.status(200).json(user.address);
-    console.log(user.address);
   } catch (error) {
     res.status(500).json({ message: "Error fetching addresses", error: error.message });
   }

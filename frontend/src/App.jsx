@@ -34,7 +34,7 @@ function App() {
       <Route path='/home' element={<HeaderLayout />}>
       <Route path="/home/about" element={<About />} />
       <Route path="/home/contact" element={<Contact />} />
-      <Route path="/home/shop" element={<ShopPage />} />
+      <Route path="/home/products" element={<ShopPage />} />
       <Route path='/home/verify' element={<Verify />} />
       <Route path="/home/forgot-password" element={<ForgotPass />}/>
       <Route path='/home/reset-password/:token' element={<ResetPassword />} />

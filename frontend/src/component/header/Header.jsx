@@ -28,7 +28,7 @@ const Header = ({ darkMode, onLoginClick, onSearchClick }) => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <li><Link to="/"><GoArrowUpRight /> Home</Link></li>
-          <li><Link to="/home/shop"><GoArrowUpRight /> Shop</Link></li>
+          <li><Link to="/home/products"><GoArrowUpRight /> Shop</Link></li>
           <li><Link to="/home/about"><GoArrowUpRight /> About</Link></li>
           <li><Link to="/home/contact"><GoArrowUpRight /> Contact</Link></li>
           <h2 className="logo">U/FASHION</h2>
