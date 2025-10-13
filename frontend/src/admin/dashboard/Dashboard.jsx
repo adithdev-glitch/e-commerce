@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Dashboard.css'
 import { assets } from '../../assets/asset'
 import { IoMdSettings } from "react-icons/io";
@@ -11,6 +11,10 @@ const Dashboard = () => {
     { img: assets.about_1, name: "Maria", msg: "When will it be available?" },
     { img: assets.about_2, name: "John", msg: "I’m excited to try this out." },
   ];
+
+  useEffect(() => {
+    
+  })
 
   return (
   <>
