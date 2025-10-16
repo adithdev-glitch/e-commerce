@@ -12,10 +12,6 @@ const Dashboard = () => {
     { img: assets.about_2, name: "John", msg: "I’m excited to try this out." },
   ];
 
-  useEffect(() => {
-    
-  })
-
   return (
   <>
     <div className="hii">

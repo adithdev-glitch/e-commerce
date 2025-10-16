@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Contact.css';
 import { motion, AnimatePresence } from 'framer-motion';
+import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 const topics = [
   'Billing',
@@ -32,25 +34,42 @@ const Contact = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // Handle form submission
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    // Basic validation
-    if (!formData.name || !formData.email || !formData.message || !selected) {
-      setError('Please fill out all fields and select a topic.');
-      return;
-    }
+  // Basic validation
+  if (!formData.name || !formData.email || !formData.message || !selected) {
+    setError('Please fill out all fields and select a topic.');
+    return;
+  }
 
-    setError('');
-    setSubmitted(true);
+  setError('');
+  setSubmitted(true);
 
-    // Simulate API submission delay
+  try {
+    // Send form data to backend
+    const response = await axios.post('http://localhost:8080/contact', {
+      name: formData.name,
+      email: formData.email,
+      topic: selected,
+      message: formData.message,
+    });
+    toast.success('Message sent successfully!');
+
+    // Reset form on success
     setTimeout(() => {
       setSubmitted(false);
       setFormData({ name: '', email: '', message: '' });
       setSelected(null);
-    }, 4000);
-  };
+    }, 3000);
+  } catch (err) {
+    console.error(err);
+    setError('Something went wrong. Please try again.');
+    setSubmitted(false);
+  }
+};
+
 
   return (
     <div className="contact-container">

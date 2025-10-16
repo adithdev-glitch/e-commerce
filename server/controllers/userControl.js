@@ -6,6 +6,7 @@ import "dotenv/config";
 import jwt from 'jsonwebtoken';
 import cloudinary from '../config/cloudinary.js';
 import productModel from '../models/ProductModel.js';
+import feedBack from '../models/feedBack.js';
 
 
 
@@ -410,3 +411,18 @@ export const showAddresses = async (req, res) => {
     res.status(500).json({ message: "Error fetching addresses", error: error.message });
   }
 }
+
+export const contact = async(req,res) => {
+  try {
+    const { name, email, topic, message } = req.body;
+    console.log(name, email, topic, message);
+
+    const newFeedback = new feedBack({ name, email, topic, message });
+    await newFeedback.save();
+
+    res.status(201).json({ message: "Message sent successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to send message" });
+  }
+}
+

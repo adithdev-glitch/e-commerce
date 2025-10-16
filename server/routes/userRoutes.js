@@ -1,6 +1,6 @@
 import express from 'express';
 import upload from '../middleware/multer.js';
-import { fetchProductDesc, fetchProducts, forgotPassword, getRelatedProducts
+import { contact, fetchProductDesc, fetchProducts, forgotPassword, getRelatedProducts
     , googleLogin, googleRegister, login, manageAccount, register, resendOtp,
      resetPassword, saveAddress, showAddresses, sideBarCategories, verifyUser } from '../controllers/userControl.js';
 
@@ -21,6 +21,7 @@ router.get('/products/:id', fetchProductDesc);
 router.get('/products/:id/related', getRelatedProducts);
 router.get("/categories", sideBarCategories);
 router.get("/address", showAddresses);
+router.post('/contact', contact);
 
 
 export default router;
