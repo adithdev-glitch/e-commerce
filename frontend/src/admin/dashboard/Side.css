@@ -1,7 +1,7 @@
 /* Sidebar container */
 .sidebar {
     width: 260px;
-    height: 84vh;
+    height: 96vh;
     background: transparent; /* dark slate */
     color: #1e293b; /* near-white */
     padding: 20px;
@@ -10,6 +10,8 @@
     flex-direction: column;
     justify-content: space-between;
     border: none;
+    top: 1px;
+    position: sticky;
   }
   
   /* Title */
@@ -79,7 +81,7 @@
 
   .menu li a:hover .icon {
     transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: none;
   }
   
   /* Logout Button */
@@ -93,6 +95,7 @@
     font-size: 16px;
     cursor: pointer;
     transition: background 0.2s ease;
+    margin-top: -60px;
   }
   
   .logout-btn:hover {

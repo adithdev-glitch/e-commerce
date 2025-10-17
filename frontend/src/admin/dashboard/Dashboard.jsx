@@ -5,6 +5,7 @@ import { IoMdSettings } from "react-icons/io";
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Dashboard = () => {
   const feeds = [
@@ -49,27 +50,33 @@ const Dashboard = () => {
   return (
   <>
     <div className="hii">
-      <div className="colorBar">
-          <h3>Profile</h3>
-      </div>
-      <div className="profileBar">
+      <motion.div 
+        className="colorBar"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+      <h3>Profile</h3>
+      </motion.div>
+
+      <motion.div className="profileBar" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}>
         <img src={admin.imageUrl} alt="profile" />
         <div className="profileInfo">
           <h2>{admin.name}</h2>
           <p>{admin.role}</p>
         </div>
         <button><IoMdSettings className='s-icon'/></button>
-      </div>
+      </motion.div>
       <div className="contents">
-        <div className="div1">
+        <motion.div className="div1" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay:0.5, ease: "easeOut" }}>
           <h4>Profile Summary</h4>
           <p>Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).</p>
           <p>Full name</p>
           <p>mob</p>
           <p>email</p>
           <p>location</p> 
-        </div>
-        <div className="div2">
+        </motion.div>
+        <motion.div className="div2" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay:1, ease: "easeOut" }}>
           <h4>Conversation</h4>
           {feeds.map((feed, index) => (
             <div key={index} className="feed">
@@ -80,8 +87,8 @@ const Dashboard = () => {
               </div>
             </div>
           ))}
-        </div>
-      <div className="div2"></div>
+        </motion.div>
+      <motion.div className="div2" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay:1.5, ease: "easeOut" }}></motion.div>
     </div>
   </div>
 </>

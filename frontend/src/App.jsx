@@ -41,8 +41,8 @@ function App() {
       <Route path="/home/account" element={<Account />} />
       <Route path="/home/product/:id" element={<ProductDescription />}/>
       <Route path="/home/favourite" element={<Wishlist />}/>
-    </Route>
       <Route path="/home/cart" element={<Cart />}/>
+    </Route>
     <Route path="/admin" element={<AdminLayout/>}>
       <Route index element={ <Dashboard  />}/>
       <Route path="/admin/profile" element={<Profile />}/>

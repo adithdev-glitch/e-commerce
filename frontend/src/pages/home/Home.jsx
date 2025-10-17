@@ -23,16 +23,15 @@ const Home = ({ showLogin, onCloseLogin, showSearch, onCloseSearch }) => {
   return (
     <>
     <motion.div className="main"
-    animate={{ backgroundColor: bgColor }}
     transition={{ duration: 0.8, ease: "easeInOut" }}>
-        <motion.div className="side-line-left" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
+        <motion.div className="side-line-left" initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: .8 }}>
             <h2>Clean Lines.</h2>
             <h2>Conscious Living.</h2>
-            <div className="quote">
+            <motion.div className="quote" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 1.2 }}>
                 <p>"Timeless, wearable,and truly well made."</p>
-            </div>
+            </motion.div>
         </motion.div>
-        <motion.div className="side-line-right" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}>
+        <motion.div className="side-line-right" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 1 }}>
             <p>Timeless essentials for the modern minimalist. Designed to simplify your wardore --- and elevate your everyday.</p>
             <button className='explore-btn' onClick={handleExploreClick}>Explore the Collection<FaArrowRight className="arrow-icon"/></button>
             <div className="review">

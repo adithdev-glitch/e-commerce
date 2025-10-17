@@ -19,8 +19,19 @@ const Content = () => {
           <p>Speed you can trust, delivery you can count on.</p>
         </div>
         <div className="icon-text">
-          <CiCreditCard1 />
-          <p>Pay your way — cards, UPI, wallets & more.</p>
+          <motion.div
+            className="icon-container"
+            whileHover={{
+              rotateY: 360,
+              scale: 1.2,
+              color: "#4f46e5", // Indigo glow
+              textShadow: "0 0 8px rgba(79,70,229,0.8)",
+            }}
+            transition={{ duration: 0.6 }}
+          >
+            <CiCreditCard1  size={40} />
+          </motion.div>
+        <p>Pay your way — cards, UPI, wallets & more.</p>
         </div>
         <div className="icon-text">
           <PiTShirt />

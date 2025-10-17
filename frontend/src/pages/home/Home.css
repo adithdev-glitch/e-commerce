@@ -156,7 +156,7 @@
   .model{
     z-index: 2;
     background-color: transparent;
-    height: 750px; 
+    height: 780px; 
     transition: filter 0.3s ease;
     backface-visibility: hidden;
   transform-style: preserve-3d;
