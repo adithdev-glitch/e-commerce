@@ -51,3 +51,22 @@ export const addProduct = async (req, res) => {
     res.status(500).json({ message: "Error adding product", error: error.message });
   }
 };
+
+export const getAdmin = async (req, res) => {
+  try {
+    const admin = req.user; // Use the user attached by the middleware
+
+    res.status(200).json({
+      success: true,
+      message: "Welcome Admin!",
+      admin: {
+        name: admin.name,
+        email: admin.email,
+        role: admin.role,
+        imageUrl: admin.imageUrl,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to load admin data" });
+  }
+};

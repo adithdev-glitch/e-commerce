@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Dashboard.css'
 import { assets } from '../../assets/asset'
 import { IoMdSettings } from "react-icons/io";
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const feeds = [
@@ -11,7 +14,38 @@ const Dashboard = () => {
     { img: assets.about_1, name: "Maria", msg: "When will it be available?" },
     { img: assets.about_2, name: "John", msg: "I’m excited to try this out." },
   ];
+ const [admin , setAdmin] = useState(null);
+ const [loading, setLoading] = useState(true);
+ const navigate = useNavigate();
+  const fetchAdminData = async () => {
+    try {
+      const response = await axios.get("http://localhost:8080/admin/profile", {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      });
+      setAdmin(response.data.admin);
+    } catch (error) {
+      const message = error.response?.data?.message || "Something went wrong!";
+      toast.error(message);
 
+      // Redirect unauthorized users immediately
+      if (error.response?.status === 403 || error.response?.status === 401) {
+        navigate("/", { replace: true });
+      }
+    } finally {
+      setLoading(false); // stop loading
+    }
+  };
+
+  useEffect(() => {
+    fetchAdminData();
+  }, []);
+
+  // ✅ Block rendering until we know if the user is authorized
+  if (loading) return <p>Loading...</p>;
+
+  if (!admin) return null; 
   return (
   <>
     <div className="hii">
@@ -19,10 +53,10 @@ const Dashboard = () => {
           <h3>Profile</h3>
       </div>
       <div className="profileBar">
-        <img src={assets.about_6} alt="profile" />
+        <img src={admin.imageUrl} alt="profile" />
         <div className="profileInfo">
-          <h2>adith</h2>
-          <p>admin</p>
+          <h2>{admin.name}</h2>
+          <p>{admin.role}</p>
         </div>
         <button><IoMdSettings className='s-icon'/></button>
       </div>

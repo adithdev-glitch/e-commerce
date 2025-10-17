@@ -13,7 +13,7 @@ app.use("/uploads", express.static("uploads"));
 app.use(cors({
   origin: "http://localhost:5173",
   methods: ["GET", "POST"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+  allowedHeaders: ["Content-Type", "Authorization", "token"],
 }));
 app.use(
     session({

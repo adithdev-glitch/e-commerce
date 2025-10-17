@@ -33,7 +33,6 @@ export const register = async(req, res) => {
         setTimeout(async () => {
           await otpModel.deleteOne({ email });
         }, 60000); // 60000 ms = 1 minute 
-        console.log(`OTP sent : ${otp}`);
         res.status(200).json({ message: "OTP sent successfully"});   
     }
 }
@@ -82,7 +81,6 @@ export const googleRegister = async(req, res) => {
     return res.status(200).json({ message: "User registered successfully and logged in" ,token});
   }
   }catch (error) {
-    console.error(error);
     res.status(400).json({ message: "Sign up failed" });
   }
 }
@@ -144,16 +142,13 @@ export const resendOtp = async (req, res) => {
         setTimeout(async () => {
           await otpModel.deleteOne({ email });
         }, 60000); // 60000 ms = 1 minute 
-        console.log(`OTP sent : ${otp}`);
         res.status(200).json({ message: "OTP Resend successfully"});  
 }
 
 export const login = async (req, res) => {
     const { email, password } = req.body;
     try {
-        const user = await userModel.findOne({ email }); 
-        console.log(user);
-  
+        const user = await userModel.findOne({ email });   
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
@@ -177,7 +172,6 @@ export const login = async (req, res) => {
         message: "Login successful",token});
   
     } catch (error) {
-      console.error(error);
       res.status(500).json({ message: "Server error" });
     }
 }
@@ -246,7 +240,6 @@ export const resetPassword = async (req, res) => {
     res.json({ message: "Password reset successful" });
 
   } catch (err) {
-    console.error(err);
     res.status(400).json({status: "error",  message: "Invalid or expired token" });
   }
 }
@@ -264,38 +257,35 @@ export const manageAccount = async (req, res) => {
   }
 }
 
-export const saveAddress5 = async(req,res) =>{
-  try {
-    const { email } = req.body;
-    const address = JSON.parse(req.body.address); // address sent as stringified JSON
+// export const saveAddress5 = async(req,res) =>{
+//   try {
+//     const { email } = req.body;
+//     const address = JSON.parse(req.body.address); // address sent as stringified JSON
 
-    if (!req.file) {
-      return res.status(400).json({ error: "No file uploaded" });
-    }
+//     if (!req.file) {
+//       return res.status(400).json({ error: "No file uploaded" });
+//     }
 
-    // Cloudinary URL (multer-storage-cloudinary puts it here)
-    const imageUrl = req.file.path;
-    console.log(imageUrl);
-    console.log(req.file.path);
-    
+//     // Cloudinary URL (multer-storage-cloudinary puts it here)
+//     const imageUrl = req.file.path;    
     
 
-    // Update user with new address & profile image
-    const userAddress = await userModel.findOneAndUpdate({ email },{ address, imageUrl });
+//     // Update user with new address & profile image
+//     const userAddress = await userModel.findOneAndUpdate({ email },{ address, imageUrl });
 
-    if (!userAddress) {
-      return res.status(404).json({ message: "User not found" });
-    }
+//     if (!userAddress) {
+//       return res.status(404).json({ message: "User not found" });
+//     }
 
-    res.status(200).json({
-      message: "Profile updated successfully",
-      user: userAddress,
-    });
-  } catch (err) {
-    console.error("Upload error:", err);
-    res.status(500).json({ error: err.message });
-  }
-}
+//     res.status(200).json({
+//       message: "Profile updated successfully",
+//       user: userAddress,
+//     });
+//   } catch (err) {
+//     console.error("Upload error:", err);
+//     res.status(500).json({ error: err.message });
+//   }
+// }
 
 
 
@@ -325,7 +315,6 @@ export const saveAddress = async (req, res) => {
 
     // secure_url is what you want to save
     const imageUrl = result.secure_url;
-    console.log(imageUrl);
 
     // update user and return updated document
     const updatedUser = await userModel.findOneAndUpdate({ email },{  address ,imageUrl },);
@@ -339,7 +328,6 @@ export const saveAddress = async (req, res) => {
       user: updatedUser,
     });
   } catch (err) {
-    console.error("saveAddress error:", err);
     return res.status(500).json({ error: err.message });
   }
 };
@@ -349,7 +337,6 @@ export const fetchProducts = async (req, res) => {
     const products = await productModel.find();
     res.status(200).json(products);
   } catch (error) {
-    console.error("Error in fetchProducts:", error);
     res.status(500).json({ message: "Error fetching products", error: error.message });
   }
 }
@@ -385,7 +372,6 @@ export const getRelatedProducts = async (req, res) => {
 
     res.status(200).json(relatedProducts);
   } catch (error) {
-    console.error("Error fetching related products:", error);
     res.status(500).json({ message: "Server error while fetching related products" });
   }
 };
