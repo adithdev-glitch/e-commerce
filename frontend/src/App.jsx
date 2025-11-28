@@ -20,6 +20,7 @@ import Billing from './admin/billing/Billing'
 import ProductDescription from './pages/product-description/ProductDescription'
 import Cart from './pages/cart/Cart'
 import Wishlist from './pages/wishlist/Wishlist'
+import Order from './pages/order/Order'
 
 
 
@@ -42,6 +43,7 @@ function App() {
       <Route path="/home/product/:id" element={<ProductDescription />}/>
       <Route path="/home/favourite" element={<Wishlist />}/>
       <Route path="/home/cart" element={<Cart />}/>
+      <Route path='/home/order' element={<Order />}/>
     </Route>
     <Route path="/admin" element={<AdminLayout/>}>
       <Route index element={ <Dashboard  />}/>

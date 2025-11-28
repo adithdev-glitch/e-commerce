@@ -3,6 +3,7 @@ import express from 'express';
 import connectDB from './DB/db.js';
 import userRoutes from './routes/userRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
 import cors from 'cors';
 import session from 'express-session';
 
@@ -28,6 +29,7 @@ app.use(
   );
 app.use("/",userRoutes);
 app.use('/admin', adminRoutes);
+app.use('/order', orderRoutes);
 
 connectDB();
 

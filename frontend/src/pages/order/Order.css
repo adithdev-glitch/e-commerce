@@ -1,0 +1,164 @@
+/* ===== Order Page Container ===== */
+.order-page {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+  }
+  
+  .order-page h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    color: #111;
+  }
+  
+  /* ===== Order Container Flex ===== */
+  .order-container {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  /* ===== Left Section: Products ===== */
+  .order-items {
+    flex: 2;
+    min-width: 300px;
+  }
+  
+  .order-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    transition: box-shadow 0.2s;
+  }
+  
+  .order-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .order-item-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+  
+  .order-item-info h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+    color: #222;
+  }
+  
+  .order-item-info p {
+    margin: 0.2rem 0;
+    font-size: 0.95rem;
+  }
+  
+  .order-item-info .price {
+    font-weight: bold;
+    color: #e53935;
+  }
+  
+  /* ===== Right Section: Summary ===== */
+  .order-summary {
+    flex: 1;
+    min-width: 250px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #fff;
+    height: fit-content;
+  }
+  
+  /* Boxes for User Details & Address */
+  .summary-box {
+    margin-bottom: 1.5rem;
+    padding: 0.8rem;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+  }
+  
+  .summary-box h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  /* Address Card */
+  .address-card {
+    padding: 0.5rem;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  .address-card p {
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+  }
+  
+  /* ===== Order Summary Section ===== */
+  .summary-item, .summary-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .summary-total {
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  
+  /* Place Order Button */
+  .place-order-btn {
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 1.2rem;
+    background-color: #e53935;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .place-order-btn:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* ===== Responsive ===== */
+  @media (max-width: 900px) {
+    .order-container {
+      flex-direction: column;
+    }
+  }
+  .payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  
+  .payment-options label {
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+  
+  .payment-options input[type="radio"] {
+    margin-right: 0.5rem;
+    accent-color: #e53935; /* red dot */
+  }
+    

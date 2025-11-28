@@ -1,9 +1,11 @@
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect} from "react";
 import "./Cart.css";
 import axios from "axios";
 import{ jwtDecode  }from "jwt-decode";
+import {useNavigate} from "react-router-dom";
 
 const Cart = () => {
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [addresses, setAddresses] = useState([]);
   const [showAddForm, setShowAddForm] = useState(false);
@@ -89,6 +91,15 @@ setAddresses(addressData);
     return <div className="empty-cart">🛒 Your cart is empty!</div>;
   }
 
+ 
+  const handleCheckout = () => {
+    navigate("/home/order", {
+      state: {
+        cartItems,
+        userId,
+      },
+    });
+  };
   
 
   return (
@@ -226,7 +237,7 @@ setAddresses(addressData);
             <span>₹{getTotal() + 50}</span>
           </div>
 
-          <button className="checkout-btn">Proceed to Checkout</button>
+          <button className="checkout-btn" onClick={handleCheckout}>Proceed to order</button>
         </div>
       </div>
     </div>
