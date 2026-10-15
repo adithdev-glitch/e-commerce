@@ -13,12 +13,12 @@ const Order = () => {
   const [total, setTotal] = useState('');
   const token = localStorage.getItem("token");
   const [address, setAddress] = useState({
-    street : "",
-    city : "",
-    state : "",
-    zipcode : "",
-    country : "",
-    phone : "",
+    street: "",
+    city: "",
+    state: "",
+    zipcode: "",
+    country: "",
+    phone: "",
   });
 
   useEffect(() => {
@@ -33,14 +33,14 @@ const Order = () => {
 
   useEffect(() => {
     if (!userId) return;  // Avoid making request with undefined ID
-  
+
     const fetchAddresses = async () => {
       try {
- 
+
         const response = await axios.get(`${import.meta.env.VITE_SERVER}/order/address`,
           { params: { id: userId } }
         );
-  
+
         const userData = response.data.user[0];
         let address = userData?.address || {};
 
@@ -55,18 +55,18 @@ const Order = () => {
         }
         setAddress(address);
 
-        } catch (error) {
+      } catch (error) {
         console.error("Error fetching addresses:", error);
       }
     };
-  
+
     fetchAddresses(userId, cartItems); // Call the function
-  
+
   }, [userId, cartItems]);
-  
-  
+
+
   console.log("Fetched address:", address);
-  
+
 
   const handleFormSubmission = async (e) => {
     e.preventDefault();
@@ -81,8 +81,24 @@ const Order = () => {
     //   return;
     // }
 
+    if (!userId) {
+      toast.error("User not found. Please log in first.");
+      return;
+    }
+
+
+    if (!cartItems || cartItems.length === 0) {
+      toast.error("Your cart is empty!");
+      return;
+    }
+
+    if (!total || total <= 0) {
+      toast.error("Invalid order total amount.");
+      return;
+    }
+
     const orderData = {
-        userId,
+      userId,
       items: cartItems,
       amount: total,
       address,
@@ -102,16 +118,27 @@ const Order = () => {
           navigate("/shipping");
         }
       } else if (paymentMethod === "UPI") {
-        const {
-          data: { order },
-        } = await axios.post(
+        if (!window.Razorpay) {
+          toast.error("Razorpay SDK is not available. Please check your network and refresh.");
+          return;
+        }
+
+        const res = await axios.post(
           `${import.meta.env.VITE_SERVER}/order/razorpay/create-order`,
           { amount: total },
           { headers: { token } }
         );
 
+        if (!res.data.success || !res.data.order) {
+          toast.error(res.data.message || "Failed to initiate payment");
+          return;
+        }
+
+        const { order, key } = res.data;
+        const razorpayKey = key || import.meta.env.VITE_RAZORPAY_KEY;
+
         const options = {
-          key: import.meta.env.VITE_RAZORPAY_KEY,
+          key: razorpayKey,
           amount: order.amount,
           currency: "INR",
           name: "Fashion Store",
@@ -119,7 +146,7 @@ const Order = () => {
           order_id: order.id,
           handler: async function (response) {
             try {
-              await axios.post(
+              const verifyRes = await axios.post(
                 `${import.meta.env.VITE_SERVER}/order/razorpay/verify-payment`,
                 {
                   razorpay_order_id: response.razorpay_order_id,
@@ -129,127 +156,140 @@ const Order = () => {
                 },
                 { headers: { token } }
               );
-              localStorage.removeItem("cart");
-              toast.success("Payment successful! Order placed.");
-              navigate("/shipping");
+              if (verifyRes.data.success) {
+                localStorage.removeItem("cart");
+                toast.success("Payment successful! Order placed.");
+                navigate("/shipping");
+              } else {
+                toast.error(verifyRes.data.message || "Payment verification failed.");
+              }
             } catch (err) {
               console.error("Payment verification failed:", err);
-              toast.error("Payment verification failed.");
+              toast.error(err.response?.data?.message || "Payment verification failed.");
             }
+          },
+          modal: {
+            ondismiss: function () {
+              toast("Payment cancelled.", { icon: "ℹ️" });
+            },
           },
           theme: { color: "#000000" },
         };
 
         const rzp = new window.Razorpay(options);
+        rzp.on("payment.failed", function (response) {
+          console.error("Payment failed:", response.error);
+          toast.error(response.error.description || "Payment failed.");
+        });
         rzp.open();
       }
     } catch (error) {
       console.error("Order placement error:", error);
-      toast.error("Something went wrong while placing order.");
+      toast.error(error.response?.data?.message || "Something went wrong while placing order.");
     }
   };
-  
+
   return (
     <div className="order-page">
-  <h1>Order Summary</h1>
+      <h1>Order Summary</h1>
 
-  <div className="order-container">
-    {/* Left Section – Product Items */}
-    <div className="order-items">
-      {cartItems.map((item) => (
-        <div key={item._id} className="order-item">
-          <img
-            src={item.images?.[0]}
-            alt={item.title}
-            className="order-item-img"
-          />
+      <div className="order-container">
+        {/* Left Section – Product Items */}
+        <div className="order-items">
+          {cartItems.map((item) => (
+            <div key={item._id} className="order-item">
+              <img
+                src={item.images?.[0]}
+                alt={item.title}
+                className="order-item-img"
+              />
 
-          <div className="order-item-info">
-            <h3>{item.title}</h3>
-            <p className="category">{item.category}</p>
-            <p className="price">₹{item.price}</p>
-            <p className="quantity">Qty: {item.quantity}</p>
-          </div>
+              <div className="order-item-info">
+                <h3>{item.title}</h3>
+                <p className="category">{item.category}</p>
+                <p className="price">₹{item.price}</p>
+                <p className="quantity">Qty: {item.quantity}</p>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
 
-    {/* Right Section – User Details + Address + Price Summary */}
-    <div className="order-summary">
-      {/* User Details */}
-      <div className="summary-box">
-        <h2>User Details</h2>
-        <p><strong>User ID:</strong> {userId}</p>
-      </div>
-
-      {/* Delivery Address */}
-      <div className="summary-box">
-        <h2>Delivery Address</h2>
-        {address ? (
-          <div className="address-card">
-            <p><strong>Name:</strong> {address?.name || "User"}</p>
-            <p><strong>Phone:</strong> {address?.phone || "-"}</p>
-            <p>
-              {address?.street || "-"}, {address?.city || "-"}, {address?.state || "-"}
-            </p>
-            <p>
-              {address?.zipcode || "-"}, {address?.country || "-"}
-            </p>
+        {/* Right Section – User Details + Address + Price Summary */}
+        <div className="order-summary">
+          {/* User Details */}
+          <div className="summary-box">
+            <h2>User Details</h2>
+            <p><strong>User ID:</strong> {userId}</p>
           </div>
-        ) : (
-          <p>No saved address found.</p>
-        )}
-      </div>
 
-      {/* Payment Method */}
-<div className="summary-box">
-  <h2>Payment Method</h2>
-  <div className="payment-options">
-    <label>
-      <input
-        type="radio"
-        name="payment"
-        value="COD"
-        checked={paymentMethod === "COD"}
-        onChange={() => setPaymentMethod("COD")}
-      />
-      Cash on Delivery (COD)
-    </label>
+          {/* Delivery Address */}
+          <div className="summary-box">
+            <h2>Delivery Address</h2>
+            {address ? (
+              <div className="address-card">
+                <p><strong>Name:</strong> {address?.name || "User"}</p>
+                <p><strong>Phone:</strong> {address?.phone || "-"}</p>
+                <p>
+                  {address?.street || "-"}, {address?.city || "-"}, {address?.state || "-"}
+                </p>
+                <p>
+                  {address?.zipcode || "-"}, {address?.country || "-"}
+                </p>
+              </div>
+            ) : (
+              <p>No saved address found.</p>
+            )}
+          </div>
 
-    <label>
-      <input
-        type="radio"
-        name="payment"
-        value="UPI"
-        checked={paymentMethod === "UPI"}
-        onChange={() => setPaymentMethod("UPI")}
-      />
-      Online Payment (UPI)
-    </label>
-  </div>
-</div>
+          {/* Payment Method */}
+          <div className="summary-box">
+            <h2>Payment Method</h2>
+            <div className="payment-options">
+              <label>
+                <input
+                  type="radio"
+                  name="payment"
+                  value="COD"
+                  checked={paymentMethod === "COD"}
+                  onChange={() => setPaymentMethod("COD")}
+                />
+                Cash on Delivery (COD)
+              </label>
 
-<form action="" onSubmit={handleFormSubmission}>
-      {/* Order Summary */}
-      <h2>Order Summary</h2>
-      <div className="summary-item">
-        <span>Subtotal</span>
-        <span>₹{total - 50}</span>
-      </div>
-      <div className="summary-item">
-        <span>Shipping</span>
-        <span>₹50</span>
-      </div>
-      <div className="summary-total">
-        <span>Total</span>
-        <span>₹{total}</span>
-      </div>
+              <label>
+                <input
+                  type="radio"
+                  name="payment"
+                  value="UPI"
+                  checked={paymentMethod === "UPI"}
+                  onChange={() => setPaymentMethod("UPI")}
+                />
+                Online Payment (UPI)
+              </label>
+            </div>
+          </div>
 
-      <button className="place-order-btn" >Place Order</button>
-      </form>
+          <form action="" onSubmit={handleFormSubmission}>
+            {/* Order Summary */}
+            <h2>Order Summary</h2>
+            <div className="summary-item">
+              <span>Subtotal</span>
+              <span>₹{total - 50}</span>
+            </div>
+            <div className="summary-item">
+              <span>Shipping</span>
+              <span>₹50</span>
+            </div>
+            <div className="summary-total">
+              <span>Total</span>
+              <span>₹{total}</span>
+            </div>
+
+            <button className="place-order-btn" >Place Order</button>
+          </form>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
   );
 };

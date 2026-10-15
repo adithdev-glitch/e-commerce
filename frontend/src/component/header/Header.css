@@ -30,7 +30,7 @@ nav {
   flex: 1;
 }
 
-.nav-left li a{
+.nav-left li a {
   display: flex;
   align-items: center;
   font-weight: 500;
@@ -74,7 +74,7 @@ nav {
   padding: 0;
 }
 
-.nav-right li a{
+.nav-right li a {
   display: flex;
   align-items: center;
   font-weight: 500;
@@ -101,11 +101,12 @@ nav {
 }
 
 @media (max-width: 768px) {
-  .ham-div{
+  .ham-div {
     background-color: #f0f2ed;
     width: 100%;
     height: 20px;
   }
+
   /* Show hamburger */
   .hamburger {
     display: block;
@@ -130,16 +131,18 @@ nav {
     z-index: 99;
     gap: 1rem;
   }
-  .nav-left li{
+
+  .nav-left li {
     width: 100%;
   }
 
-  .nav-right li{
+  .nav-right li {
     position: relative;
     margin-right: -300px;
     width: 100%;
     text-align: right;
   }
+
   .nav-right {
     display: none;
     flex-direction: column;
@@ -157,12 +160,13 @@ nav {
   .nav-left.show,
   .nav-right.show {
     display: flex;
-    
+
   }
 
   /* Center logo on mobile */
   .logo {
-    order: -1; /* Ensure it stays at the top */
+    order: -1;
+    /* Ensure it stays at the top */
     margin: 0px auto;
     margin-left: -0px;
     padding-bottom: 1rem;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import  {useLocation} from 'react-router-dom';
-import './Verify.css'; 
+import { useNavigate, useLocation } from 'react-router-dom';
+import './Verify.css';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
@@ -10,31 +9,44 @@ const Verify = () => {
   const [timer, setTimer] = useState(60);
   const location = useLocation();
   const navigate = useNavigate();
-  const { name, email, password } = location.state;
+  const { name, email, password } = location.state || {};
 
-  const handleOtpChange = async(e) => {
+  useEffect(() => {
+    if (!email) {
+      toast.error("No registration data found. Please register first.");
+      navigate("/");
+    }
+  }, [email, navigate]);
+
+  const handleOtpChange = async (e) => {
     e.preventDefault();
+    if (!otp.trim()) {
+      toast.error("Please enter the verification code");
+      return;
+    }
     try {
-      const response = await axios.post("http://localhost:8080/verify", {
-         name,
-         email,
-         password,
-          otp
+      const serverUrl = import.meta.env.VITE_SERVER || "http://localhost:8080";
+      const response = await axios.post(`${serverUrl}/verify`, {
+        name,
+        email,
+        password,
+        otp
       });
       toast.success(response.data.message);
       navigate("/");
     } catch (error) {
-      toast.error("Registeration failed");
+      toast.error(error.response?.data?.message || "Verification failed");
     }
   };
 
   const handleResendOtp = async () => {
     try {
-      const response = await axios.post("http://localhost:8080/resend-otp", { email });
+      const serverUrl = import.meta.env.VITE_SERVER || "http://localhost:8080";
+      const response = await axios.post(`${serverUrl}/resend-otp`, { email });
       toast.success(response.data.message);
-      setTimer(60); 
+      setTimer(60);
     } catch (error) {
-      toast.error("Failed to resend OTP");
+      toast.error(error.response?.data?.message || "Failed to resend OTP");
     }
   };
 
@@ -63,11 +75,11 @@ const Verify = () => {
           />
           <button type="submit" className="verify-btn">Verify</button>
         </form>
-       {/* 🔹 Resend OTP Button with countdown */}
-       {timer > 0 ? (
+        {/* 🔹 Resend OTP Button with countdown */}
+        {timer > 0 ? (
           <p className="countdown-text" >Resend OTP in {timer}s</p>
         ) : (
-          <button onSubmit={handleResendOtp} className="resend-btn" onClick={handleResendOtp}>
+          <button type="button" className="resend-btn" onClick={handleResendOtp}>
             Resend Code
           </button>
         )}

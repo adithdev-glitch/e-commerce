@@ -25,17 +25,24 @@ const Auth = ({ onClose }) => {
   const registerHandler = async(e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/register", {
+      const serverUrl = import.meta.env.VITE_SERVER || "http://localhost:8080";
+      const response = await axios.post(`${serverUrl}/register`, {
         name,
         email,
         password
       });
-      toast.success(response.data.message);
-      navigate("/verify", { state: {name, email, password} } );
-    } catch (error) {
-      toast.error("Registeration failed");
-    }
 
+      if (response.data.message === "User already exists") {
+        toast.error(response.data.message);
+        return;
+      }
+
+      toast.success(response.data.message);
+      if (onClose) onClose();
+      navigate("/home/verify", { state: { name, email, password } });
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Registration failed");
+    }
   }
 
   const loginHandler = async(e) => {

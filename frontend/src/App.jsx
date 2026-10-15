@@ -45,6 +45,9 @@ function App() {
       <Route path="/home/cart" element={<Cart />}/>
       <Route path='/home/order' element={<Order />}/>
     </Route>
+    <Route path='/verify' element={<HeaderLayout />}>
+      <Route index element={<Verify />} />
+    </Route>
     <Route path="/admin" element={<AdminLayout/>}>
       <Route index element={ <Dashboard  />}/>
       <Route path="/admin/profile" element={<Profile />}/>
