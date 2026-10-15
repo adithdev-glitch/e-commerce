@@ -120,7 +120,7 @@ const Order = () => {
           handler: async function (response) {
             try {
               await axios.post(
-                `${import.meta.env.VITE_URL}/order/razorpay/verify-payment`,
+                `${import.meta.env.VITE_SERVER}/order/razorpay/verify-payment`,
                 {
                   razorpay_order_id: response.razorpay_order_id,
                   razorpay_payment_id: response.razorpay_payment_id,

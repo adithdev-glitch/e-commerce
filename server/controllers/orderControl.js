@@ -88,8 +88,7 @@ export const placeOrder = async (req, res) => {
           status: "Confirmed",
         });
   
-        await newOrder.save();
-  
+        await newOrder.save();  
         return res.status(200).json({ success: true, message: "Payment verified & order saved." });
       } else {
         return res.status(400).json({ success: false, message: "Invalid signature" });

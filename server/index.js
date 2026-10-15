@@ -17,17 +17,17 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization", "token"],
 }));
 app.use(
-    session({
-      secret: "your-secret-key", 
-      resave: false,
-      saveUninitialized: false,
-      cookie: {
-        httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000, 
-      },
-    })
-  );
-app.use("/",userRoutes);
+  session({
+    secret: "your-secret-key",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    },
+  })
+);
+app.use("/", userRoutes);
 app.use('/admin', adminRoutes);
 app.use('/order', orderRoutes);
 
@@ -35,5 +35,5 @@ connectDB();
 
 
 app.listen(process.env.PORT, () => {
-    console.log('Server is running on http://localhost:8080');
+  console.log('Server is running on http://localhost:8080');
 });

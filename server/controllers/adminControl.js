@@ -54,6 +54,7 @@ export const addProduct = async (req, res) => {
 
 export const getAdmin = async (req, res) => {
   try {
+
     const admin = req.user; // Use the user attached by the middleware
 
     res.status(200).json({

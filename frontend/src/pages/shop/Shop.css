@@ -186,3 +186,23 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 123, 255, 0.4);
 }
+/* Large laptops */
+@media (max-width: 1200px) {
+  .products-sec {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+  .products-sec {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .products-sec {
+    grid-template-columns: 1fr;
+  }
+}
